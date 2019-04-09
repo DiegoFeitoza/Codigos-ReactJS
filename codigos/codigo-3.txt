@@ -1,0 +1,277 @@
+https://popcorntime.api-docs.io/api/exports/Rd8Az46YiWYcBQTs4
+
+https://tv-v2.api-fetch.website/movies/1
+
+https://tv-v2.api-fetch.website/movies
+
+==============================================
+
+const MontaLista = (props) => {
+	return(
+  	<ul style={{}}>
+    	{props.data.map(movie => <MontaLinha {...movie}/>)}
+    </ul>
+  );
+}
+
+const CarregaDetalhe = (props) => {
+	return(
+  	<div>
+    	{props.imdb_id}
+    </div>
+  );
+}
+
+const MontaLinha = (props) => {
+	return(
+  	<li style={{marginBottom: '20px'}}>
+        <div>
+          <div style={{marginBottom: '10px'}}>{props.title} | {props.year} | {props.imdb_id}</div>
+           <div style={{display: 'inline-block'}}>
+            <img src={props.images.poster} alt={props.title} width="160" align="left" style={{marginRight: '10px'}}/>
+            <div style={{marginRigth: '10px'}}>{props.synopsis}</div>
+          </div>
+        </div>     
+  	</li>
+  );
+}
+
+class App extends React.Component{
+	state = {
+      data: []
+  }
+  
+  montaFilmes = () => {
+  		axios.get('https://tv-v2.api-fetch.website/movies/1')
+      .then(result => {
+        this.setState({
+          dataFilmes: result.data
+        })     
+      });
+  }
+  
+   montaSeries = () => {
+  		axios.get('https://tv-v2.api-fetch.website/shows/1')
+      .then(result => {
+        this.setState({
+          data: result.data
+        })     
+      });
+  }
+  
+	render(){
+  this.montaSeries()
+  	return(
+    	<div>
+          <MontaLista data={this.state.data} /> 
+    	</div>
+    );
+  }
+}
+ReactDOM.render(<App />, mountNode);
+
+=================================================================
+
+Play nine
+
+1ª Parte
+
+//Play Nine
+//Projeto React PluralSigth
+
+const Stars = (props) => {
+	const qtdEstrelas = 1 + Math.floor(Math.random()*9);
+  
+	return(  	
+    <div className="col-5">
+    	{_.range(qtdEstrelas).map((val) => <i key={val+1} className="fa fa-star"></i>)}
+    </div>
+  );
+};
+
+const Button = (props) =>{
+	return(
+  	<div className="col-2">
+    		<button>=</button>
+    </div>
+  );
+}
+
+const Respostas = (props) => {
+	return(
+  	<div className="col-5">
+        <span>5</span>
+        <span>6</span>
+    </div>
+  );
+};
+
+const Numeros = (props) =>{   
+	return(
+  	<div class="card text-center">
+  	  <div>
+  	 		{Numeros.list.map((valor,i) =>
+        	<span key={i+1}>{valor}</span>
+        )}
+    
+  	  </div>
+  	</div>
+  );
+};
+
+Numeros.list = _.range(1,10);
+
+class Game extends React.Component{
+	render(){
+  	return(
+    	<div>
+    	  <h3>Play 9</h3>        
+    	</div>
+    );
+  }
+};
+
+class App extends React.Component{
+	render(){
+  	return(
+    	<div className="container">
+      	<Game />
+        <hr />
+        <div className="row">
+          <Stars />
+          <Button />
+          <Respostas />
+        </div>
+        <br />
+        <Numeros />
+      </div>
+    );
+  }
+};
+
+ReactDOM.render(<App />, mountNode);
+
+CSS-------------
+	.mountNode {
+	  color: #333;
+	}
+
+	.fa-star{
+		margin-right: 10px;
+	  margin-bottom: 10px;
+	  font-size: 25px
+	}
+
+	span{
+	  display: inline-block;
+	  margin: 5px 7px;
+	  background-color: rgba(200,200,200,1);
+	  width: 25px;
+	  border-radius: 50%;
+	  text-align: center;
+	  cursor: pointer;
+	}
+
+	.selecionado{
+		background-color: rgba(240,240,240,1);
+	  color: grey;
+		cursor: not-allowed;
+	}
+
+	.usado{
+		background-color: rgba(0, 255, 100, 1);
+	  color: green;
+		cursor: not-allowed;
+	}
+-----------------
+
+========================================
+
+//Play Nine
+
+const Stars = (props) => {
+	const qtdEstrelas = 1 + Math.floor(Math.random()*9);
+	    
+	return(  	
+    <div className="col-5">
+    	{_.range(qtdEstrelas).map((numero, i) => <i className="fa fa-star"></i>)}
+    </div>
+  );
+}
+
+const Button = (props) =>{
+	return(
+  	<div className="col-2">
+    		<button>=</button>
+    </div>
+  );
+}
+
+const Respostas = (props) => {
+	return(
+  	<div className="col-5">
+    	{props.numerosClicados.map((numero, i) => <span key={i}>{numero}</span>)}
+    </div>
+  );
+}
+
+const Numeros = (props) =>{
+	const verificaNumerosClicados = (numero) => {
+  	if(props.numerosClicados.indexOf(numero) >= 0){
+    	return 'selecionado'
+    }
+  }
+
+	return(
+  	<div class="card text-center">
+  	  <div>
+  	    {Numeros.list.map((numero, i) =>
+        	<span key={i}
+        				className={verificaNumerosClicados(numero)}
+                onClick={() => props.clickNumero(numero)}>{numero}</span>)}
+  	  </div>
+  	</div>
+  );
+}
+
+Numeros.list = _.range(1,10);
+
+class Game extends React.Component{
+	state={
+  	numerosClicados: [1,2,3]
+  }
+  
+  clickNumeros = (numero) => {
+  	this.setState(prevState => ({
+    	numerosClicados: prevState.numerosClicados.concat(numero)
+    }));
+  }
+
+	render(){
+  	return(
+    	<div>
+    	  <h3>Play 9</h3>        
+        <hr />
+        <div className="row">
+          <Stars />
+          <Button />
+          <Respostas numerosClicados={this.state.numerosClicados}/>
+        </div>
+        <br />
+        <Numeros numerosClicados={this.state.numerosClicados} clickNumero={this.clickNumeros}/>
+    	</div>
+    );
+  }
+};
+
+class App extends React.Component{
+	render(){
+  	return(
+    	<div className="container">
+      	<Game />
+      </div>
+    );
+  }
+};
+
+ReactDOM.render(<App />, mountNode);

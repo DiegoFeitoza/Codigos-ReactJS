@@ -1,0 +1,321 @@
+Parte 2 = Working with Data
+PluralSight
+
+================================
+
+let dataCard = [
+ 	{
+    avatar: "https://avatars2.githubusercontent.com/u/137?v=4",
+    nome: "Nome",
+    tipo: "Usuário",
+    id: 20	
+  },
+  {
+    avatar: "https://avatars3.githubusercontent.com/u/138?v=4",
+    nome: "Nome 2",
+    tipo: "Usuário 2",
+    id: 21	
+  },
+  {
+    avatar: "https://avatars3.githubusercontent.com/u/139?v=4",
+    nome: "Nome 3",
+    tipo: "Usuário 3",
+    id: 22	
+  },
+  {
+    avatar: "https://avatars3.githubusercontent.com/u/140?v=4",
+    nome: "Nome 4",
+    tipo: "Usuário 4",
+    id: 23	
+  },
+  {
+    avatar: "https://avatars3.githubusercontent.com/u/141?v=4",
+    nome: "Nome 5",
+    tipo: "Usuário 5",
+    id: 24	
+  }
+]
+
+const Card = (props) => {
+	return(
+    	<div className="card">
+      		<div className="row">
+            <div className="col-sm-2">
+              <img src={props.avatar} alt={props.name} width="80" />
+            </div>
+            <div className="col-sm-10">
+              <div style={{fontWeight: 'bold', fontSize: '20px'}} className="name-user">{props.name}</div>
+              <div className="type-user">{props.userType}</div>
+              <div className="id-user">{props.userId}</div>
+            </div>     
+          </div>
+      </div>
+  );
+}
+
+const ListCard = (props) => {
+	return(
+    
+  <div>
+  	{props.cards.map(card => <Card avatar={card.avatar} name={card.nome} userType={card.tipo} userId={card.id}/>)}
+  </div>
+  );
+}
+
+class App extends React.Component{
+	render(){
+  	return(    
+  	<div className="container">
+    	<ListCard cards={dataCard}/>
+    </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+
+================================================
+let dataCard = [
+  {
+    avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+    nome: "Diego Feitoza",
+    idade: "29 Anos",
+    cargo: "Engenheiro de Software Junin",
+    email: "diego@email.com"
+  },
+  {
+    avatar_url: "https://avatars0.githubusercontent.com/u/2?v=4",
+    nome: "Caique Luã",
+    idade: "32 Anos",
+    cargo: "Engenheiro de Software Sênior",
+    email: "lua.boss@email.com"
+  },
+];
+
+const CardUnit = (props) =>{
+  return(
+    <div style={{margin: '20px'}}>
+      <img src={props.avatar_url} alt={props.nome} className="avatar-user img-rounded" style={{width: '100px', verticalAlign: 'top'}}/>
+      <div id="detalhes-card" style={{display: 'inline-block', marginLeft: '10px'}}>
+        <div className="nome-user" style={{fontWeight: 'bold', fontSize: '22px'}}>{props.nome}</div>
+        <div className="cargo-user">{props.cargo}</div>
+        <div className="idade-user">{props.idade}</div>
+        <div className="email-user"><a href={"mailto:"+props.email}>{props.email}</a></div>
+      </div>
+    </div>
+  );
+}
+
+const CardList = (props) =>{
+  return(
+    <div>
+      {props.data.map(card => <CardUnit {...card} />)}
+    </div>
+  );
+}
+
+class App extends React.Component{
+  render(){
+    return(
+      <div>
+          <CardList data={dataCard} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+
+========================================================================
+
+const CardUnit = (props) =>{
+  return(
+    <div style={{margin: '20px'}}>
+      <img src={props.avatar_url} alt={props.nome} className="avatar-user img-rounded" style={{width: '100px', verticalAlign: 'top'}}/>
+      <div id="detalhes-card" style={{display: 'inline-block', marginLeft: '10px'}}>
+        <div className="nome-user" style={{fontWeight: 'bold', fontSize: '22px'}}>{props.nome}</div>
+        <div className="cargo-user">{props.cargo}</div>
+        <div className="idade-user">{props.idade}</div>
+        <div className="email-user"><a href={"mailto:"+props.email}>{props.email}</a></div>
+      </div>
+    </div>
+  );
+}
+
+const CardList = (props) =>{
+  return(
+    <div>
+      {props.data.map(card => <CardUnit {...card} />)}
+    </div>
+  );
+}
+
+class FormSearch extends React.Component{
+  state ={
+    nameSearch:''
+  }
+  
+  clickFunction = (e) =>{
+    e.preventDefault();
+    console.log('valor digitado: ', this.state.nameSearch);
+  }
+    
+  
+  render(){
+    return(
+      <form onSubmit={this.clickFunction}>
+        <input
+          type="text"
+          name="name-search"
+          value={this.state.nameSearch}
+          onChange={(event) => this.setState({nameSearch: event.target.value})}
+        />
+        <button type="submit">Adicionar</button>
+      </form>
+    );  
+  }
+}
+
+class App extends React.Component{
+  state = {
+    dataCard:[
+      {
+        avatar_url: "https://avatars0.githubusercontent.com/u/1?v=4",
+        nome: "Diego Feitoza",
+        idade: "29 Anos",
+        cargo: "Engenheiro de Software Junin",
+        email: "diego@email.com"
+      },
+      {
+        avatar_url: "https://avatars0.githubusercontent.com/u/2?v=4",
+        nome: "Caique Luã",
+        idade: "32 Anos",
+        cargo: "Engenheiro de Software Sênior",
+        email: "lua.boss@email.com"
+      },
+    ]
+  }
+
+  render(){
+    return(
+      <div>
+          <FormSearch />
+          <CardList data={this.state.dataCard} />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+=================================================
+
+let trataData = (data) =>{
+  var dataTrat = new Date(data);
+  var mesEditado = (String(dataTrat.getMonth()+1).length == 1) ? '0'+(dataTrat.getMonth()+1) : String(dataTrat.getMonth()+1);
+  return dataTrat.getDate()+'/'+mesEditado+'/'+dataTrat.getFullYear();
+}
+
+const CardUnit = (props) =>{
+  return(
+    <div style={{margin: '20px'}}>
+      <img src={props.avatar_url} alt={props.name} className="avatar-user img-rounded" style={{width: '100px', verticalAlign: 'top'}}/>
+      <div id="detalhes-card" style={{display: 'inline-block', marginLeft: '10px'}}>
+        <div className="nome-user" style={{fontWeight: 'bold', fontSize: '22px'}}>{props.name}</div>
+        <div className="cargo-user">Localidade: {props.location}</div>
+        <div className="idade-user">Tipo: {props.type}</div>
+        <div className="email-user">Perfil criado em: {trataData(props.created_at)}</div>
+      </div>
+    </div>
+  );
+}
+
+const CardList = (props) =>{
+  return(
+    <div>
+      {props.data.map(card => <CardUnit {...card} />)}
+    </div>
+  );
+}
+
+class FormSearch extends React.Component{
+  state ={
+    nameSearch:''
+  }
+  
+  clickFunction = (e) =>{
+    e.preventDefault();
+    axios.get(`https://api.github.com/users/${this.state.nameSearch}`)
+    .then(data => {
+      this.props.onSubmit(data.data);
+      this.setState({
+        nameSearch: ''
+      });
+    });
+  }
+    
+  
+  render(){
+    return(
+      <div>
+        <form onSubmit={this.clickFunction}>
+        <input
+          type="text"
+          name="name-search"
+          value={this.state.nameSearch}
+          onChange={(event) => this.setState({nameSearch: event.target.value})}
+          placeholder={this.props.placeHolder}
+        />
+        <input type="submit" value="Adicionar" style={{display: 'block'}}/>        
+      </form> 
+      <Button nameButton="Limpar Tudo" clickFunction={this.props.limparDados}/>        
+      </div>
+    );  
+  }
+}
+
+<<<<<<< HEAD
+let Button = (props) => {
+  return(
+    <button onClick={props.clickFunction}>{props.nameButton}</button>
+  );
+}
+=======
+
+>>>>>>> e2bc19a9502c102c6d8fab0d0a5949c1668d7974
+
+class App extends React.Component{
+  state = {
+    dataCard:[]
+  }
+  adicionarUsuario = (cardData) => {
+    this.setState(prevState => ({
+        dataCard: prevState.dataCard.concat(cardData)
+    }));
+  }
+  
+  limparDados = () =>{
+    this.setState({
+      dataCard: []
+    });
+  }
+
+  render(){
+    return(
+      <div>
+          <FormSearch
+            onSubmit={this.adicionarUsuario}
+            limparDados={this.limparDados}
+            placeHolder="Digite o usuário"
+          />
+          <CardList
+            data={this.state.dataCard}
+          />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+
+================================================
+

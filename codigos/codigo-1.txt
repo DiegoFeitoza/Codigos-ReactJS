@@ -1,0 +1,558 @@
+https://jscomplete.com/repl (SITE USADO)
+
+=======================================================
+
+Código-1 => Teste de todos os conteúdos no app
+
+// Write JavaScript here and press Ctrl+Enter to execute
+const App = function(){
+	return (
+  		<section id="topo-app">
+        <header id="header-topo-app">
+        	<h1>Titulo Componente</h1>
+        	<h3>SubTitulo</h3> 
+        </header>
+        <div id="corpo-app">
+        	<div class="paragrafo-app">
+          	<p>
+            		Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis. Detraxit consequat et quo num tendi nada. Si num tem leite então bota uma pinga aí cumpadi! Mais vale um bebadis conhecidiss, que um alcoolatra anonimis.
+            </p>
+          </div>
+        	<div class="campo-btn-app">
+						<button>Click!</button>
+          </div>
+        </div>
+      </section>
+  );
+}
+
+ReactDOM.render(<App />, mountNode);
+
+=========================================================
+
+Código-2 => Exemplo do curso do PluralSight
+
+// Write JavaScript here and press Ctrl+Enter to execute
+
+class App extends React.Component{  
+  state = {
+//   Valores do topo
+  topo: {
+    titulo: "Titulo Componente",
+    subTitle: "SubTitulo"
+  },
+//   Valores do botão
+    dataButton: {   
+      textButton: "Click!",
+      count: 0
+    },
+//   Valores dos conteudos
+  dataValues: {  
+    paragrafo: "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis. Detraxit consequat et quo num tendi nada. Si num tem leite então bota uma pinga aí cumpadi! Mais vale um bebadis conhecidiss, que um alcoolatra anonimis."
+  }
+    
+    
+  }
+  
+  //   Criando função
+  clickBotaoContador = () => {
+    this.setState((prevState) => ({
+      dataButton:{
+          textButton: prevState.dataButton.textButton,         
+          count: prevState.dataButton.count +1
+      }   
+    }));
+  }
+  
+render(){
+    return(
+      <section id="topo-app">
+        <header id="header-topo-app">
+          <h1>{this.state.topo.titulo}</h1>
+          <h3>{this.state.topo.subTitle}</h3> 
+        </header>
+        <div id="corpo-app">
+          <div class="paragrafo-app">
+            <p> {this.state.dataValues.paragrafo} </p>
+          </div>
+          <div class="campo-btn-app">
+            <button onClick={this.clickBotaoContador}>{this.state.dataButton.textButton}</button>
+            <p>Clicks: <span>{this.state.dataButton.count}</span></p>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+}
+
+ReactDOM.render(<App />, mountNode);
+
+==================================================================
+
+Código 3 => Primeiro do dia
+
+class Titulo extends React.Component{
+  state = {
+    variavel: "Nome de variavel"
+  }
+
+  botao = {
+    nomeBotao: "Clicar"
+  }
+
+  funcaoReact = () => {
+  let novoNome;
+  if(this.state.variavel == "Nome de variavel"){
+    novoNome = "Novo Titulo após click";
+  }else{
+    novoNome =  "Nome de variavel";
+  }
+  this.setState({
+    variavel: novoNome
+  })
+    
+  }
+
+  render(){
+    return(
+      <div id="nova-div">     
+        <h1>{this.state.variavel}</h1>
+        <button onClick={this.funcaoReact}>{this.botao.nomeBotao}</button>
+      </div>
+    )
+  }
+}
+
+class Corpo extends React.Component{
+  state={
+    corpo: {
+      paragrafo1: "Mussum Ipsum, cacilds vidis litro abertis. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis. Mauris nec dolor in eros commodo tempor. Aenean aliquam molestie leo, vitae iaculis nisl. Praesent malesuada urna nisi, quis volutpat erat hendrerit non. Nam vulputate dapibus. Não sou faixa preta cumpadi, sou preto inteiris, inteiris.",
+      paragrafo2: "Praesent vel viverra nisi. Mauris aliquet nunc non turpis scelerisque, eget. In elementis mé pra quem é amistosis quis leo. Nullam volutpat risus nec leo commodo, ut interdum diam laoreet. Sed non consequat odio. Diuretics paradis num copo é motivis de denguis."
+    }
+  }
+  
+  render(){
+    return(
+      <section id="main">
+        <div id="paragrafos">
+            <p id="par-1">
+              {this.state.corpo.paragrafo1}
+            </p>
+            <p id="par-2">
+              {this.state.corpo.paragrafo2}
+            </p>
+        </div>
+      </section>
+    );
+  }
+}
+
+class Footer extends React.Component{
+  state={
+    footer:{
+      textoFooter: "Mussum Ipsum, cacilds vidis litro abertis. Interessantiss quisso pudia ce receita de bolis, mais bolis eu num gostis.",
+      copyright: "Copyright Livre"
+    }
+  }
+  
+  render(){
+    return(
+      <footer id="footer-geral">
+        <div id="corpo-footer">
+          <span>{this.state.footer.textoFooter}</span>
+          <span>{this.state.footer.copyright}</span>
+        </div>
+      </footer>
+    );
+  }
+}
+
+class App extends React.Component{
+  render(){
+    return(
+      <Titulo />
+    );
+  }
+}
+ReactDOM.render(<App />, mountNode);
+
+===============================================================
+
+Código PROPS
+
+// Write JavaScript here and press Ctrl+Enter to execute
+class Main extends React.Component{  
+ //   Valores do topo
+  topo= {
+    titulo: "Titulo Componente",
+    subTitle: "SubTitulo"
+  }
+  //   Valores dos conteudos
+  dataValues= {  
+    paragrafo: "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis. Detraxit consequat et quo num tendi nada. Si num tem leite então bota uma pinga aí cumpadi! Mais vale um bebadis conhecidiss, que um alcoolatra anonimis."
+  }
+  
+render(){
+    return(
+      <section id="topo-app">
+        <header id="header-topo-app">
+          <h1>{this.topo.titulo}</h1>
+          <h3>{this.topo.subTitle}</h3> 
+        </header>
+        <div id="corpo-app">
+          <div class="paragrafo-app">
+            <p> {this.dataValues.paragrafo} </p>
+          </div>
+          <div class="campo-btn-app">
+            <Button onClickButton={this.props.clickButton} passForButton={1}/>
+            <Button onClickButton={this.props.clickButton} passForButton={5}/>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+}
+
+class Button extends React.Component{
+  click = () => {
+    this.props.onClickButton(this.props.passForButton);
+  }
+
+  render(){
+    return(
+      <button onClick={this.click}>
+        +{this.props.passForButton}
+      </button>
+    );
+  };
+
+}
+
+const Contador = (props) => {
+  return(
+    <div id="espaco-soma">
+      <h5>{props.textCont}{props.countIncrement}</h5>
+    </div>
+  );
+}
+
+class Footer extends React.Component{
+  render(){
+    return(
+        <footer>          
+          <div className="container">
+            <div className="row">  
+              <div className="col-sm-6">Footer do APP
+              </div>
+              <div className="col-sm-6">copyright (C)
+              </div>
+            </div>
+          </div>
+        </footer>
+    )
+  }
+}
+
+class App extends React.Component{
+  state={
+    count: 0
+  }
+  
+  clickBotaoContador = (valueIncrement) =>{
+    this.setState((prevState) => ({
+        count: prevState.count + valueIncrement
+    }));
+  }  
+  
+  render(){
+    return(
+      <div id="main">
+        <Main clickButton={this.clickBotaoContador}/>
+        <Contador countIncrement={this.state.count} textCont={"Soma: "} />
+        <Footer />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+
+===============================================================
+
+Refatoração do código props
+
+// Write JavaScript here and press Ctrl+Enter to execute// Write JavaScript here and press Ctrl+Enter to execute
+class Main extends React.Component{  
+ //   Valores do topo
+  topo= {
+    titulo: "Titulo Componente",
+    subTitle: "SubTitulo"
+  }
+  //   Valores dos conteudos
+  dataValues= {  
+    paragrafo: "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis. Detraxit consequat et quo num tendi nada. Si num tem leite então bota uma pinga aí cumpadi! Mais vale um bebadis conhecidiss, que um alcoolatra anonimis."
+  }
+  
+render(){
+    return(
+      <section id="topo-app">
+        <header id="header-topo-app">
+          <h1>{this.topo.titulo}</h1>
+          <h3>{this.topo.subTitle}</h3> 
+        </header>
+        <div id="corpo-app">
+          <div class="paragrafo-app">
+            <p> {this.dataValues.paragrafo} </p>
+          </div>
+          <div class="campo-btn-app">
+            <p>O que você deseja fazer?</p>
+            <Button onClickButton={this.props.clickButton} passForButton={1} signal={'+'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={10} signal={'+'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={2} signal={'*'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={1} signal={'-'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={2} signal={'/'}/>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+}
+
+class Button extends React.Component{
+  click = () => {
+    this.props.onClickButton(this.props.passForButton,this.props.signal);
+  };
+
+  render(){
+    return(
+      <button onClick={this.click}>
+        {this.props.signal}
+        {this.props.passForButton}
+      </button>
+    );
+  };
+
+}
+
+const Contador = (props) => {
+  return(
+    <div id="espaco-result">    
+      <h5>{props.operacaoRealizada}{props.countIncrement}</h5>
+    </div>
+  );
+}
+
+class Footer extends React.Component{
+  render(){
+    return(
+        <footer>          
+          <div className="container">
+            <div className="row">  
+              <div className="col-sm-6">Footer do APP
+              </div>
+              <div className="col-sm-6">copyright (C)
+              </div>
+            </div>
+          </div>
+        </footer>
+    )
+  }
+}
+
+class App extends React.Component{
+  state={
+    count: 0,    
+    operacao: ""
+  }
+  
+  clickBotaoCalc = (valueIncrement, op) =>{
+    switch(op){
+    case '+':
+        this.setState((prevState) => ({         
+           count: prevState.count + valueIncrement,
+           operacao: "Soma: "
+        }));
+        break;
+    case '*':
+        this.setState((prevState) => ({         
+           count: prevState.count * valueIncrement,           
+            operacao: "Multiplicação: " 
+        }));      
+        break;
+    case '-':
+        this.setState((prevState) => ({         
+           count: prevState.count - valueIncrement,       
+            operacao: "Subtração: "
+        }));      
+        break;
+    case '/':
+        this.setState((prevState) => ({         
+           count: prevState.count / valueIncrement,
+           operacao: "Divisão: "
+        }));        
+        break;
+    }   
+  }
+  
+  render(){
+    return(
+      <div id="main">
+        <Main clickButton={this.clickBotaoCalc} />
+        <Contador countIncrement={this.state.count} operacaoRealizada={this.state.operacao}/>
+        <Footer />
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+
+=================================================
+
+Adicionando mais componentes react com a leitura dos comandos props
+
+// Write JavaScript here and press Ctrl+Enter to execute// Write JavaScript here and press Ctrl+Enter to execute
+class Main extends React.Component{  
+ //   Valores do topo
+  topo= {
+    titulo: "Titulo Componente",
+    subTitle: "SubTitulo"
+  }
+  //   Valores dos conteudos
+  dataValues= {  
+    paragrafo: "Mussum Ipsum, cacilds vidis litro abertis. Suco de cevadiss deixa as pessoas mais interessantis. Detraxit consequat et quo num tendi nada. Si num tem leite então bota uma pinga aí cumpadi! Mais vale um bebadis conhecidiss, que um alcoolatra anonimis."
+  }
+  
+render(){
+    return(
+      <section id="topo-app">
+        <header id="header-topo-app">
+          <Titulo titulo={this.topo.titulo} />
+          <SubTitulo subTitulo={this.topo.subTitle} /> 
+        </header>
+        <div id="corpo-app">
+          <div class="paragrafo-app">
+            <CampoTexto texto={this.dataValues.paragrafo} />
+          </div>
+          <div class="campo-btn-app">
+            <CampoTexto texto="Qual conta?" />
+            <Button onClickButton={this.props.clickButton} passForButton={1} signal={'+'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={10} signal={'+'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={2} signal={'*'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={1} signal={'-'}/>
+            <Button onClickButton={this.props.clickButton} passForButton={2} signal={'/'}/>
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+}
+
+class Button extends React.Component{
+  click = () => {
+    this.props.onClickButton(this.props.passForButton,this.props.signal);
+  };
+
+  render(){
+    return(
+      <button onClick={this.click}>
+        {this.props.signal}
+        {this.props.passForButton}
+      </button>
+    );
+  };
+
+}
+
+const Contador = (props) => {
+  return(
+    <div id="espaco-result">    
+      <h5>{props.operacaoRealizada}{props.countIncrement}</h5>
+    </div>
+  );
+}
+
+let Titulo = (props) => {
+  return(
+    <h1>{props.titulo}</h1>
+  );
+}
+
+let SubTitulo = (props) => {
+  return(
+    <h3>{props.subTitulo}</h3>
+  );
+}
+
+let CampoTexto = (props) =>{
+  return(
+    <p>{props.texto}</p>
+  );
+}
+
+class Footer extends React.Component{
+  render(){
+    return(
+        <footer>          
+          <div className="container">
+            <div className="row">  
+              <div className="col-sm-6"><CampoTexto texto="Footer do APP" />
+              </div>
+              <div className="col-sm-6"><CampoTexto texto="Copyright (c)" />
+              </div>
+            </div>
+          </div>
+        </footer>
+    )
+  }
+}
+
+class App extends React.Component{
+  state={
+    count: 0,    
+    operacao: ""
+  }
+  
+  clickBotaoCalc = (valueIncrement, op) =>{
+    switch(op){
+    case '+':
+        this.setState((prevState) => ({         
+           count: prevState.count + valueIncrement,
+           operacao: "Soma: "
+        }));
+        break;
+    case '*':
+        this.setState((prevState) => ({         
+           count: prevState.count * valueIncrement,           
+            operacao: "Multiplicação: " 
+        }));      
+        break;
+    case '-':
+        this.setState((prevState) => ({         
+           count: prevState.count - valueIncrement,       
+            operacao: "Subtração: "
+        }));      
+        break;
+    case '/':
+        this.setState((prevState) => ({         
+           count: prevState.count / valueIncrement,
+           operacao: "Divisão: "
+        }));        
+        break;
+    }   
+  }
+  
+  render(){
+    return(
+      <div id="main">
+        <Main clickButton={this.clickBotaoCalc} />
+        <Contador countIncrement={this.state.count} operacaoRealizada={this.state.operacao}/>
+        <Footer />
+      </div>
+    );
+  }
+}
